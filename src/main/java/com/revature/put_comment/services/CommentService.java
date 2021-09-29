@@ -28,8 +28,34 @@ public class CommentService {
         commentsRepo.updateComment(comment);
     }
 
+    /**
+     * @param comment - The comment being validated
+     * @return - a boolean value representing whether the comment is valid
+     *
+     * @author - Charles Mettee
+     */
     public boolean isValid(Comment comment){
-        //#TODO add validation logic
+        if(comment == null){
+            return false;
+        }
+        if(comment.getId() == null || comment.getId().trim().equals("")){
+            return false;
+        }
+        if(comment.getAncestors() == null || comment.getAncestors().size() != 2) {
+            return false;
+        }
+        if(comment.getParent() == null || comment.getParent().trim().equals("")){
+            return false;
+        }
+        if(comment.getDescription() == null || comment.getDescription().trim().equals("")){
+            return false;
+        }
+        if(comment.getDate_created() == null || comment.getDate_created().length() != 23){
+            return false;
+        }
+        if(comment.getOwner() == null || comment.getOwner().trim().equals("")){
+            return false;
+        }
         return true;
     }
 
