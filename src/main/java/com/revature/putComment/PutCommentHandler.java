@@ -16,8 +16,6 @@ import java.time.LocalDateTime;
 public class PutCommentHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private static final Gson mapper = new GsonBuilder().setPrettyPrinting().create();
-    private final CommentsRepo commentsRepo = new CommentsRepo();
-    private final CommentService commentService = new CommentService(commentsRepo);
 
     /**
      * @param requestEvent
@@ -29,7 +27,8 @@ public class PutCommentHandler implements RequestHandler<APIGatewayProxyRequestE
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 
         LambdaLogger logger = context.getLogger();
-        logger.log("RECEIVED EVENT: " + requestEvent);
+        CommentsRepo commentsRepo = new CommentsRepo();
+        CommentService commentService = new CommentService(commentsRepo, logger);
 
         Comment comment = mapper.fromJson(requestEvent.getBody(), Comment.class);
         comment.setDate_created(LocalDateTime.now().toString());
