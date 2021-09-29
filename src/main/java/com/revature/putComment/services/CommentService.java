@@ -11,6 +11,7 @@ public class CommentService {
 
     /**
      * @param commentsRepo
+     * @param lambdaLogger
      * @author - Charles Mettee
      */
     public CommentService(CommentsRepo commentsRepo, LambdaLogger lambdaLogger) {
@@ -20,7 +21,7 @@ public class CommentService {
 
     /**
      * @param comment - The Comment to be sent to the repo for updating in the database
-     * @throws Exception
+     * @throws Exception - thrown if the comment was determined to be invalid
      *
      * @author - Charles Mettee
      */

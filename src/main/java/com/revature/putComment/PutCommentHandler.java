@@ -18,9 +18,9 @@ public class PutCommentHandler implements RequestHandler<APIGatewayProxyRequestE
     private static final Gson mapper = new GsonBuilder().setPrettyPrinting().create();
 
     /**
-     * @param requestEvent
-     * @param context
-     * @return
+     * @param requestEvent - The proxy event from AWS API Gateway
+     * @param context - the context of the request
+     * @return - response with HTTP status code
      * @author - Charles Mettee
      */
     @Override
