@@ -1,5 +1,6 @@
 package com.revature.putComment.services;
 
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.revature.putComment.repos.CommentsRepo;
 import com.revature.putComment.models.Comment;
 import org.junit.jupiter.api.AfterEach;
@@ -18,11 +19,13 @@ public class CommentServiceTestSuite {
 
     CommentService sut;
     CommentsRepo mockCommentsRepo;
+    LambdaLogger mockLambdaLogger;
 
     @BeforeEach
     void setUp(){
         mockCommentsRepo = mock(CommentsRepo.class);
-        sut = new CommentService(mockCommentsRepo);
+        mockLambdaLogger = mock(LambdaLogger.class);
+        sut = new CommentService(mockCommentsRepo, mockLambdaLogger);
     }
 
     @AfterEach

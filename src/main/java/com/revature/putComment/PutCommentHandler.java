@@ -16,20 +16,19 @@ import java.time.LocalDateTime;
 public class PutCommentHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private static final Gson mapper = new GsonBuilder().setPrettyPrinting().create();
-    private final CommentsRepo commentsRepo = new CommentsRepo();
-    private final CommentService commentService = new CommentService(commentsRepo);
 
     /**
-     * @param requestEvent
-     * @param context
-     * @return
+     * @param requestEvent - The proxy event from AWS API Gateway
+     * @param context - the context of the request
+     * @return - response with HTTP status code
      * @author - Charles Mettee
      */
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 
         LambdaLogger logger = context.getLogger();
-        logger.log("RECEIVED EVENT: " + requestEvent);
+        CommentsRepo commentsRepo = new CommentsRepo();
+        CommentService commentService = new CommentService(commentsRepo, logger);
 
         Comment comment = mapper.fromJson(requestEvent.getBody(), Comment.class);
         comment.setDate_created(LocalDateTime.now().toString());
