@@ -38,9 +38,17 @@ public class PutCommentHandler implements RequestHandler<APIGatewayProxyRequestE
         try{
             commentService.updateComment(comment);
             respEvent.setStatusCode(200);
+            Map<String, String> headers = new HashMap<>();
+            headers.put("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization");
+            headers.put("Access-Control-Allow-Origin", "*");
+            respEvent.setHeaders(headers);
             return respEvent;
         } catch (Exception e){
             respEvent.setStatusCode(400);
+            Map<String, String> headers = new HashMap<>();
+            headers.put("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization");
+            headers.put("Access-Control-Allow-Origin", "*");
+            respEvent.setHeaders(headers);
             return respEvent;
         }
 
