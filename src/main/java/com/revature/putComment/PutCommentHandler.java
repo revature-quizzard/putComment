@@ -12,6 +12,8 @@ import com.revature.putComment.repos.CommentsRepo;
 import com.revature.putComment.services.CommentService;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PutCommentHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
