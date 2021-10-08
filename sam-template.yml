@@ -7,7 +7,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: target/putComment-1.0-SNAPSHOT.jar
-      Handler: com.revature.postThread.PutCommentHandler
+      Handler: com.revature.putComment.PutCommentHandler
       Runtime: java8.al2
       Description: Java function
       MemorySize: 256
